@@ -1,0 +1,4 @@
+CREATE TABLE Categories (
+  Id INT PRIMARY KEY NOT NULL IDENTITY(1,1),
+  Title nvarchar(20) NOT NULL
+ )

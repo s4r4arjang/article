@@ -1,0 +1,197 @@
+﻿
+@model PagingResult<DisplayCategoryDTO>
+
+@{
+    ViewData["Title"] = "دسته بندی";
+}
+
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            دسته بندی
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a  href="#">دسته بندی</a></li>
+
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <a class="btn btn-info mb-3 "  asp-action="Create" asp-controller="Category">ایجاد</a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">دسته بندی</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                            @if (Model.Result == null)
+                            {
+                                <span>موردی یافت نشد</span>
+                            }
+                            else
+                            {
+                                
+                                <div class="row">
+                                <div class="col-sm-12">
+                                  
+                                        <table id="order-listing" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 83.525px;"> ردیف</th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" style="width: 104.65px;"> @*@Html.DisplayNameFor(model=> model.Result)*@عنوان دسته بندی</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 83.525px;"> عملیات</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{
+
+                                                    int rownumber = ((@Model.Paging.CurrentPage - 1) * @Model.Paging.PageSize) + 1;
+
+                                                }
+                                                @foreach (var item in Model.Result)
+                                                {
+                                                    <tr role="row" class="odd">
+                                                        <td>@rownumber</td>
+                                                        <td class="sorting_1">  @Html.DisplayFor(modelItem => item.Title)</td>
+                                                        <td>
+
+                                                            <a asp-action="Edit" asp-controller="Category" asp-route-Id="@item.Id"> <i class="fa fa-edit" style="font-size:20px"></i> </a>
+                                                      
+                                                            <span >|</span>
+                                                            <a href="#" class="remove" onclick="DeleteArticleCategory(@item.Id)"> <i class="text-danger fa fa-times-circle" style="font-size:20px"></i> </a>
+                                                            <span>|</span>
+
+
+                                                            @if (item.IsActive == true)
+                                                            {
+
+                                                                <a href="#" onclick="ChangeActivation(@item.Id , '@item.IsActive')"> <i class="fa fa-ban" aria-hidden="true" style="font-size:20px"></i> </a>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <a href="#" onclick="ChangeActivation(@item.Id , '@item.IsActive')">  <i class="fa fa-check-circle" style="font-size:20px"></i> </a>
+
+                                                            }
+
+                                                        </td>
+                                                    </tr>
+                                                    rownumber++;
+
+                                                }
+
+                                            </tbody>
+                                        </table>
+
+                                    
+                                  
+                                
+                                
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-12 " style="direction: rtl;">
+                                        <page-size first="5" end="25" item-selected=@Model.Paging.PageSize step="5" contoller="Category" action="Index" class="col-sm-12 col-md-7"></page-size>
+                                    </div>
+                                   <div class="col-md-5 col-sm-12" style="direction:ltr">
+                                 <pagination  contoller="Category" action="Index" pager-model=@Model.Paging  class="col-sm-12 col-md-7"> </pagination>
+                                   </div> 
+                                </div>
+                        </div>
+                                    }
+                    </div>
+
+                    <div class="modal" id="categoryModal">
+                        <div class="swal-overlay swal-overlay--show-modal">
+                            <div class="swal-modal">
+
+                                <div class="swal-icon swal-icon--warning">
+                                    <span class="swal-icon--warning__body">
+                                        <span class="swal-icon--warning__dot"></span>
+                                    </span>
+                                </div>
+                                <div class="swal-title" style=""> دسته بندی مقاله</div>
+                                <div class="swal-text" style="">آیا مطمئن هستید ؟</div><div class="swal-footer">
+                                    <div class="swal-button-container">
+
+                                        <button  data-dismiss="modal" class="swal-button swal-button--cancel btn btn-danger">لغو</button>
+
+                                        <div class="swal-button__loader">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+
+                                    </div><div class="swal-button-container">
+                                        <form  method="post">
+ 
+                                            <input name="Id" id="catid" />
+                                           
+                                                 <input id="deactivation" class=" swal-button swal-button--confirm btn btn-primary" asp-action="DeActiveCategory" asp-controller="Category" type="submit" value="بله"  />
+                                            
+                                               <input id="activation" class="swal-button swal-button--confirm btn btn-primary" asp-action="ActiveCategory" asp-controller="Category" type="submit" value="بله" />
+                                               <input id="deleteCategory" class="swal-button swal-button--confirm btn btn-primary" asp-action="Delete" asp-controller="Category" type="submit" value="بله" />
+                                            
+                                        </form>
+
+
+                                        <div class="swal-button__loader">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+@section Scripts {
+
+    <script>
+        function ChangeActivation(id , isActive) {
+            debugger
+            $("#catid").val(id)
+            $("#deleteCategory").hide();
+            
+            if (isActive == "True")
+            {
+                $("#activation").hide();
+            }
+            else 
+            {
+                  $("#deactivation").hide();
+            }
+            $('#categoryModal').modal('show');
+           
+            //showSwal('warning-message-and-cancel')
+        }
+
+        function DeleteArticleCategory(id) {
+
+         $("#catid").val(id)
+         $("#activation").hide();
+         $("#deactivation").hide();
+        $('#categoryModal').modal('show');
+        
+         }
+    </script>
+
+
+    }
+
+
+

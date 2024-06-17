@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<partial name="_HeadLayout" />
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+   <partial name="_HeadBody" />
+ 
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <partial name="_Setting" />
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <partial name="_SideBar" />
+      <!-- partial -->
+      <div class="main-panel">
+        
+         
+
+        <!-- content-wrapper ends -->
+
+                 @RenderBody()
+        <!-- partial:partials/_footer.html -->
+       <partial name="_Footer" />
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <partial name="_Script" />
+    <partial name="_ValidationScriptsPartial" />
+  @RenderSection("Scripts", required: false)
+</body>
+
+</html>

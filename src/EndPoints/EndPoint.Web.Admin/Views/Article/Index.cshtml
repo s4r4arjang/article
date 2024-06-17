@@ -1,0 +1,181 @@
+﻿@using AtrinCode.Core.Domain.DTOs.Articles
+@using AtrinCode.Core.Domain.PagingModel
+@model PagingResult<DisplayArticleDTO>
+
+@{
+    ViewData["Title"] = "مقاله";
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title">
+            مقاله
+        </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a  asp-action="Create" asp-controller="Article">ایجاد</a></li>
+
+            </ol>
+        </nav>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">دسته بندی</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="order-listing" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 83.525px;"> ردیف</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" style="width: 104.65px;"> عنوان مقاله</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" style="width: 104.65px;">کلیات</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" style="width: 104.65px;">عنوان دسته بندی</th>
+                                                <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-sort="ascending" style="width: 104.65px;">وضعیت</th>
+                                                <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" style="width: 83.525px;"> عملیات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                             @{
+
+                                               int  rownumber=((@Model.Paging.CurrentPage-1)*@Model.Paging.PageSize)+1;
+          
+                                               }
+                                            @foreach (var item in Model.Result)
+                                            {
+                                                <tr role="row" class="odd">
+                                                    <td>@rownumber</td>
+                                                    <td class="sorting_1">  @Html.DisplayFor(modelItem => item.Title)</td>
+                                                    <td class="sorting_1">  @Html.DisplayFor(modelItem => item.ShortDescription)</td>
+                                                    <td class="sorting_1">  @Html.DisplayFor(modelItem => item.CategoryTitle)</td>
+                                                    <td class="sorting_1"> 
+                                                         
+                                                        @if (item.StatusTitle == "دیده نشده")
+                                                        {
+                                                          
+                                                           <label class="badge badge-info">@Html.DisplayFor(modelItem => item.StatusTitle)</label>
+                                                           
+                                                        }
+                                                        else if(item.StatusTitle == "در حال بررسی")
+                                                        {
+                                                            <label class="badge badge-primary">@Html.DisplayFor(modelItem => item.StatusTitle)</label>
+
+                                                        }
+                                                        else if(item.StatusTitle == "رد شده")
+                                                        {
+                                                             <label class="badge badge-danger">@Html.DisplayFor(modelItem => item.StatusTitle)</label>
+                                                        }
+                                                        else if (item.StatusTitle == "تایید شده")
+                                                        {
+                                                            <label class="badge badge-success">@Html.DisplayFor(modelItem => item.StatusTitle)</label>
+                                                        }
+
+                                                    </td>
+                                                    <td>
+                                                        
+                                                        <a asp-action="Edit" asp-controller="Article" asp-route-Id="@item.Id"> <i class="fa fa-edit" style="font-size:20px"></i> </a>
+                                                       |
+                                                       <a href="#" class="remove" onclick="DeleteArticle(@item.Id)"> <i class="text-danger fa fa-times-circle" style="font-size:20px"></i> </a>
+
+                                                       |
+                                 
+                                                        <a asp-action="ConfirmArticle" asp-route-Id="@item.Id" asp-controller="Article" > <i class="fa fa-thumbs-up" style="font-size:20px"></i></a>
+                                                        |
+                                                        <a asp-action="RejectArticle" asp-route-Id="@item.Id" asp-controller="Article"> <i class="fa fa-thumbs-down" style="font-size:20px"></i></a>
+                                                         |
+                                                        <a asp-action="ArticleDetails"  asp-controller="Article" asp-route-Id="@item.Id"> <i class="text-info fa fa-eye mt-2" style="font-size:20px"></i> </a>
+                                                    </td>
+                                                </tr>
+                                               rownumber++;
+
+                                            }
+
+                                        </tbody>
+                                    </table>
+                          
+                                
+                                
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-5 col-sm-12 " style="direction: rtl;">
+                                        <page-size first="5" end="25" item-selected=@Model.Paging.PageSize step="5" contoller="Article" action="Index" class="col-sm-12 col-md-7"></page-size>
+                                    </div>
+                                   <div class="col-md-5 col-sm-12" style="direction:ltr">
+                                 <pagination  contoller="Article" action="Index" pager-model=@Model.Paging  class="col-sm-12 col-md-7"> </pagination>
+                                   </div> 
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="articleModal">
+                        <div class="swal-overlay swal-overlay--show-modal">
+                            <div class="swal-modal">
+
+                                <div class="swal-icon swal-icon--warning">
+                                    <span class="swal-icon--warning__body">
+                                        <span class="swal-icon--warning__dot"></span>
+                                    </span>
+                                </div>
+                                <div class="swal-title" style=""> دسته بندی مقاله</div>
+                                <div class="swal-text" style="">آیا مطمئن هستید ؟</div><div class="swal-footer">
+                                    <div class="swal-button-container">
+
+                                        <button  data-dismiss="modal" class="swal-button swal-button--cancel btn btn-danger">لغو</button>
+
+                                        <div class="swal-button__loader">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+
+                                    </div><div class="swal-button-container">
+                                        <form  method="post">
+                                            
+                                               <input name="Id" id="artid" />
+                                               <input id="deleteArticle" class="swal-button swal-button--confirm btn btn-primary" asp-action="Delete" asp-controller="Article" type="submit" value="بله" />
+                                            
+                                        </form>
+                                        
+                                        <div class="swal-button__loader">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+</div>
+@section Scripts {
+
+    <script>
+       
+
+        function DeleteArticle(id) {
+          debugger
+         $("#artid").val(id)
+        $('#articleModal').modal('show');
+        
+         }
+
+    </script>
+
+
+    }
+
+
+

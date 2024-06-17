@@ -1,0 +1,237 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<html lang="fa">
+    <partial name="_HeadLayout" />
+       <title>آترین کد </title>
+<body>
+
+    <header class="header-area header-two">
+
+        <div class="top-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="row align-items-center">
+                        <div class="d-none d-lg-block col-md-4 ">
+                            <div class="logo">
+                                <a href="@Url.Action("Index","Home")">
+                                    <img src="assets/img/logo.svg" alt="image" style=" height: 63px;">
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="col-md-8">
+                            <div class="right-alignment">
+                                <ul class="socials-link">
+                                    <li>دنبال کنید :</li>
+                                    <li><a href="#"><i class="lab la-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="lab la-twitter"></i></a></li>
+                                    <li><a href="#"><i class="lab la-youtube"></i></a></li>
+                                    <li><a href="#"><i class="lab la-instagram"></i></a></li>
+                                    <li><a href="#"><i class="lab la-telegram"></i></a></li>
+                                </ul>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="navbar-area">
+            <div class="main-responsive-nav">
+                <div class="container">
+                    <div class="main-responsive-menu">
+                        <div class="logo">
+                            <a href="@Url.Action("Index","Home")">
+                                <img src="assets/img/logo.svg" alt="image" style="height: 4em;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-navbar navbar-three">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-light navbar-two">
+
+
+
+                        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent" style="display: block;">
+                            <ul class="col-md-11 navbar-nav mr-auto">
+                                <li class="nav-item">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link active bb-1px">
+                                        خانه
+                                        <i class="las la-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                راهکار ها
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                                <li class="nav-item">
+                                    <a href="contact.html" class="nav-link bb-1px">
+                                        تماس با ما
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="contact.html" class="nav-link bb-1px">
+                                        تماس با ما
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="contact.html" class="nav-link bb-1px">
+                                        تماس با ما
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="contact.html" class="nav-link bb-1px">
+                                        تماس با ما
+                                    </a>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+   @RenderBody()
+       <div class="footer-area">
+        <div class="container">
+            <div class="footer-contant ptb-50">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-7">
+                        <div class="footer-widget">
+                            <img src="assets/img/logo.svg" alt="Logo">
+                            <!--<p>فداکاری و کارهای خیرخواهانه داوطلبان
+                            سازمان هایی که در سطح جهان انجام می دهند
+                            را نمی توان دست کم گرفت. ما همکاری کردیم</p>-->
+                            <ul class="social-link">
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="lab la-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="lab la-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="lab la-youtube"></i>
+                                    </a>
+                                </li>
+                                <li title=" اینستاگرام">
+                                    <a title=" اینستاگرام" href="#" target="_blank">
+                                        <i class="lab la-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <i class="lab la-telegram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-sm-7">
+                        <div class="footer-widget">
+                            <h3>لینکهای سریع</h3>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <ul class="widget-list">
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="about.html">درباره ما</a>
+                                        </li>
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="#">چشم انداز و ارزش ها</a>
+                                        </li>
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="#">جوایز</a>
+                                        </li>
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="services.html">خدمات</a>
+                                        </li>
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="#">حرفه و شغل</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <ul class="widget-list">
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="about.html">رسانه</a>
+                                        </li>
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="blog">اخبار وبلاگ</a>
+                                        </li>
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="#">امکانات</a>
+                                        </li>
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="terms-condition.html">قوانین و ضوابط</a>
+                                        </li>
+                                        <li>
+                                            <i class="las la-angle-left"></i>
+                                            <a href="#">سایر</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-5">
+                        <div class="footer-widget">
+                            <h3>اطلاعات مشتری</h3>
+                            <ul class="contact-info">
+                                <li>
+                                    <i class="las la-map-marker-alt"></i>
+                                    ایران ، استان تهران ، میدان آزادی
+                                </li>
+                                <li>
+                                    <i class="las la-phone"></i>
+                                    <a href="tel:09192010642">09192010642</a>
+                                </li>
+                                <li>
+                                    <i class="las la-envelope"></i>
+                                    <a href="atrincode@gmail.com"><span class="__cf_email__" data-cfemail="2e4f4441426e47404841004d4143">atrincode@gmail.com</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+            <div class="footer-bottom">
+        <p> طراحی , توسعه <a href="#" > سجاد خلیلی</a></p>
+    </div>
+    </div>
+
+
+    <div class="go-top">
+        <i class="las la-hand-point-up"></i>
+    </div>
+   
+      <partial name="_Script" />
+      <partial name="_ValidationScriptsPartial" />
+      @RenderSection("Scripts",required: false)
+</body>
+</html>

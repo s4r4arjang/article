@@ -1,0 +1,46 @@
+﻿@model AtrinCode.Core.Domain.DTOs.Articles.CreateArticleDTO
+
+@{
+    ViewData["Title"] = " دسته بندی جدید";
+}
+
+
+<div class="content-wrapper">
+          <div class="page-header">
+            <h3 class="page-title">
+              دسته بندی جدید
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="index" asp-controller="Category">  دسته بندی</a></li>
+                <li class="breadcrumb-item active" aria-current="page">دسته بندی جدید</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">دسته بندی </h4>
+                    <form class="forms-sample" method="post" asp-action="Create" asp-controller="Category">
+                   
+
+
+                        <div class="form-group">
+                            <label asp-for="Title"></label>
+                            <input type="text" class="form-control" asp-for="Title" style="width: 500px;" placeholder="عنوان خود را وارد کنید">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                      
+                      
+
+                
+                        <button type="submit" class="btn btn-primary mr-2">ثبت</button>
+                        <a asp-action="index" asp-controller="Category" class="btn btn-light">بازگشت</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+          </div>
+        </div>
+

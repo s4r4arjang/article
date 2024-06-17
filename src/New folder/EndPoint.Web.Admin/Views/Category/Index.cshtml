@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<input type="hidden" value="model.Id" />
+<div class="container">
+    <h1>لیست دسته بندی اخبار</h1>
+<p>
+    <a asp-action="Create" asp-controller="Category">ایجاد</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                <a href="#" onclick="DeleteArticleCategory(@item.Id)">Delete</a>
+            </td>
+        </tr>
+        
+}
+    </tbody>
+
+</table>
+
+</div> 
+@section Scripts {
+<script>
+     function DeleteArticleCategory(id) {
+        debugger
+        //var ArticleCategoryId=e.target.Id;
+        $.ajax({
+            url: "Category/Delete/" + id,
+            type: "POST",
+            dataType : "json",
+            success: function(response) {
+                debugger
+                //var rep = JSON.parse(response);
+                   window.location.reload();
+                   alert(response.Message);
+                   
+            }
+        })
+        } ;
+</script> 
+}
